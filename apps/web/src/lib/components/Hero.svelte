@@ -1,281 +1,179 @@
 <script>
-  import { Motion } from "svelte-motion";
   import { siteConfig } from "$lib/config";
-  import ScrambleText from "./ScrambleText.svelte";
-  import { ArrowRight } from "lucide-svelte";
-
-  // Mouse parallax logic
-  let mouseX = 0;
-  let mouseY = 0;
-
-  function handleMouseMove(e) {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
-  }
+  import { ArrowDown, Github, Linkedin, Twitter } from "lucide-svelte";
 </script>
 
-<svelte:window on:mousemove={handleMouseMove} />
-
-<section class="hero-container">
-  <!-- Interactive Mesh / Abstract Shape Background (Simulated with CSS for performance) -->
-  <div class="mesh-grid"></div>
-
+<section class="hero">
   <div class="content">
-    <div class="text-side">
-      <div class="meta-tag">
-        <span class="dot"></span> Available for hire
-      </div>
+    <!-- Simple, honest intro -->
+    <p class="greeting">Hey, I'm</p>
 
-      <h1 class="headline">
-        <span class="block-reveal">Digital Craftsman</span>
-        <span class="block-reveal">
-          <span class="accent">&</span>
-          <ScrambleText text="System Architect" />
-        </span>
-      </h1>
+    <h1 class="name">Dagmawi</h1>
 
-      <p class="intro">
-        Designing interfaces that feel <span class="highlight">organic</span>
-        and building backends that remain
-        <span class="highlight">invisible</span>.
+    <p class="tagline">
+      I write code that actually works.
+      <span class="muted">Most of the time.</span>
+    </p>
+
+    <div class="bio">
+      <p>
+        Building things on the internet since 2018. Currently obsessed with
+        making apps feel <em>fast</em> and look <em>good</em>.
       </p>
-
-      <div class="cta-group">
-        <a href="#work" class="btn-primary">
-          See Projects <ArrowRight size={18} />
-        </a>
-        <a href="mailto:{siteConfig.email}" class="btn-ghost">
-          Start a conversation
-        </a>
-      </div>
+      <p>
+        When I'm not coding, I'm probably reading, arguing about fonts, or
+        making coffee I'll forget to drink.
+      </p>
     </div>
 
-    <div class="visual-side">
-      <!-- Floating Glass Card Composition -->
-      <Motion
-        animate={{ x: mouseX * -2, y: mouseY * -2 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        let:motion
+    <!-- Simple social links -->
+    <div class="socials">
+      <a
+        href={siteConfig.socials.github}
+        class="social-link"
+        aria-label="GitHub"
       >
-        <div class="glass-stack" use:motion>
-          <div class="card card-1 glass">
-            <div class="code-snippet">
-              <span class="keyword">const</span>
-              <span class="var">nextBigThing</span>
-              = <span class="keyword">await</span>
-              <span class="func">buildFuture</span>();
-            </div>
-          </div>
-          <div class="card card-2 glass"></div>
-          <div class="card card-3 glass"></div>
-        </div>
-      </Motion>
+        <Github size={20} />
+      </a>
+      <a
+        href={siteConfig.socials.twitter}
+        class="social-link"
+        aria-label="Twitter"
+      >
+        <Twitter size={20} />
+      </a>
+      <a
+        href={siteConfig.socials.linkedin}
+        class="social-link"
+        aria-label="LinkedIn"
+      >
+        <Linkedin size={20} />
+      </a>
     </div>
+
+    <!-- Scroll hint -->
+    <a href="#work" class="scroll-hint">
+      <span>See my work</span>
+      <ArrowDown size={16} />
+    </a>
   </div>
 </section>
 
 <style>
-  .hero-container {
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    padding: 0 4rem;
-  }
-
-  .content {
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
-    align-items: center;
-    position: relative;
-    z-index: 10;
-  }
-
-  /* Typography */
-  .meta-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-  }
-
-  .dot {
-    width: 8px;
-    height: 8px;
-    background: #4ade80;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #4ade80;
-  }
-
-  .headline {
-    font-size: clamp(3.5rem, 6vw, 6rem);
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 2rem;
-    letter-spacing: -0.03em;
-  }
-
-  .block-reveal {
-    display: block;
-  }
-
-  .accent {
-    font-family: "Times New Roman", serif;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent-1);
-  }
-
-  .intro {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    max-width: 500px;
-    line-height: 1.6;
-    margin-bottom: 3rem;
-  }
-
-  .highlight {
-    color: var(--text-primary);
-    text-decoration: underline;
-    text-decoration-color: var(--accent-2);
-    text-underline-offset: 4px;
-  }
-
-  /* CTAs */
-  .cta-group {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-  }
-
-  .btn-primary {
-    background: var(--text-primary);
-    color: var(--bg-color);
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: transform 0.2s;
-  }
-
-  .btn-primary:hover {
-    transform: scale(1.02);
-  }
-
-  .btn-ghost {
-    color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 1rem;
-    border-bottom: 1px solid transparent;
-    transition: border 0.2s;
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--accent-1);
-  }
-
-  /* Visual Composition */
-  .glass-stack {
-    position: relative;
-    height: 500px;
-    perspective: 1000px;
-  }
-
-  .card {
-    position: absolute;
-    border-radius: 24px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  }
-
-  .card-1 {
-    width: 400px;
-    height: 250px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-5deg);
-    z-index: 3;
+  .hero {
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(20, 20, 20, 0.6);
+    padding: 4rem 2rem;
+    position: relative;
   }
 
-  .card-2 {
-    width: 350px;
-    height: 350px;
-    top: 40%;
-    left: 60%;
-    transform: translate(-50%, -50%) rotate(10deg);
-    z-index: 2;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 107, 107, 0.2),
-      rgba(0, 0, 0, 0)
-    );
-  }
-
-  .card-3 {
-    width: 200px;
-    height: 200px;
-    top: 70%;
-    left: 30%;
-    transform: translate(-50%, -50%) rotate(-15deg);
+  .content {
+    max-width: 600px;
+    position: relative;
     z-index: 1;
-    background: linear-gradient(
-      135deg,
-      rgba(78, 205, 196, 0.2),
-      rgba(0, 0, 0, 0)
-    );
   }
 
-  .code-snippet {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.9rem;
-    color: #a1a1aa;
+  .greeting {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
-  .keyword {
-    color: #c586c0;
-  }
-  .var {
-    color: #9cdcfe;
-  }
-  .func {
-    color: #dcdcaa;
+  .name {
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 900;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--text-primary);
   }
 
-  @media (max-width: 1024px) {
+  .tagline {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0 0;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .muted {
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .bio {
+    margin-top: 2rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 500px;
+  }
+
+  .bio p {
+    margin: 0 0 1rem 0;
+  }
+
+  .bio em {
+    color: var(--text-primary);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .socials {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    background: var(--surface-1);
+    border: 1px solid var(--surface-2);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .social-link:hover {
+    color: var(--text-primary);
+    background: var(--surface-2);
+    transform: translateY(-2px);
+  }
+
+  .scroll-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 4rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+    transition: all 0.2s;
+  }
+
+  .scroll-hint:hover {
+    opacity: 1;
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 768px) {
     .content {
-      grid-template-columns: 1fr;
-      text-align: center;
-      gap: 6rem;
+      text-align: left;
     }
-
-    .meta-tag,
-    .cta-group {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta-group {
-      justify-content: center;
+    .socials {
+      justify-content: flex-start;
     }
   }
 </style>

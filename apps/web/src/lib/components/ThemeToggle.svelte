@@ -1,11 +1,17 @@
 <script>
   import { isDark } from "$lib/stores/theme";
   import { Sun, Moon } from "lucide-svelte";
+  import { playSwitch } from "$lib/utils/sound";
+
+  function toggleTheme() {
+    playSwitch();
+    $isDark = !$isDark;
+  }
 </script>
 
 <button
   class="theme-toggle glass"
-  on:click={() => ($isDark = !$isDark)}
+  on:click={toggleTheme}
   aria-label="Toggle Theme"
 >
   {#if $isDark}
