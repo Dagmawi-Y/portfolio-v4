@@ -38,7 +38,10 @@
   // Chat state
   let chatInput: HTMLTextAreaElement;
   let message = "";
-  $: if ($chatTrigger > 0) focusChat();
+  $: if ($chatTrigger > 0) {
+    focusChat();
+    chatTrigger.set(0);
+  }
 
   let messages = [
     {

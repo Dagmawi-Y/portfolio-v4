@@ -2,8 +2,8 @@ import { error } from '@sveltejs/kit';
 
 export async function load({ params }) {
 	try {
-        // Adjust relative path to src/posts
-		const post = await import(`../../../../src/posts/${params.slug}.md`)
+		// Path: routes/blog/[slug] -> go up to src, then into posts
+		const post = await import(`../../../posts/${params.slug}.md`)
 
 		return {
 			content: post.default,

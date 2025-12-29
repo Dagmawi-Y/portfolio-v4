@@ -35,6 +35,9 @@
     min-height: 100vh;
     position: relative;
     color: var(--text-primary);
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
   }
 
   /* No offset needed for floating dock */
@@ -97,12 +100,12 @@
 
   /* Theme Variable Injection */
   .app-layout.dark {
-    background-color: #000;
-    --bg-color: #000;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --surface-1: rgba(30, 41, 59, 0.6);
-    --surface-2: rgba(51, 65, 85, 0.4);
+    background-color: var(--bg-color);
+    --bg-color: #121418;
+    --text-primary: #e8e8ed;
+    --text-secondary: #9ca3af;
+    --surface-1: rgba(28, 31, 38, 0.7);
+    --surface-2: rgba(42, 45, 54, 0.5);
     --accent-1: #38bdf8;
   }
 

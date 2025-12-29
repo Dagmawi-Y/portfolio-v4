@@ -15,6 +15,7 @@
   import { isDark } from "$lib/stores/theme";
   import { triggerChat } from "$lib/stores/chat";
   import { playSwitch, playPop } from "$lib/utils/sound";
+  import { goto } from "$app/navigation";
 
   const navItems = [
     { id: "home", icon: Home, label: "Home", href: "/" },
@@ -57,12 +58,33 @@
     lastScrollY = currentScrollY;
   }
 
-  function handleNavClick(e: MouseEvent, id: string) {
+  async function handleNavClick(e: MouseEvent, id: string) {
     activeId = id;
     playPop();
+
     if (id === "contact") {
       e.preventDefault();
+
+      // If not on home, navigate there first
+      if ($page.url.pathname !== "/") {
+        await goto("/");
+      }
+
+      // Trigger the chat focus
       triggerChat();
+      return;
+    }
+
+    if (id === "back") {
+      e.preventDefault();
+      // If we have history, go back. Otherwise go to parent path
+      if (typeof window !== "undefined" && window.history.length > 1) {
+        window.history.back();
+      } else {
+        const segments = $page.url.pathname.split("/").filter(Boolean);
+        segments.pop();
+        goto("/" + segments.join("/"));
+      }
     }
   }
 

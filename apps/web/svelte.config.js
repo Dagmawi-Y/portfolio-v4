@@ -1,24 +1,68 @@
 import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { mdsvex } from "mdsvex";
+import { createHighlighter } from "shiki";
+
+// Create a Shiki highlighter with GitHub Dark theme
+const highlighter = await createHighlighter({
+  themes: ["github-dark-default"],
+  langs: [
+    "javascript",
+    "typescript",
+    "jsx",
+    "tsx",
+    "html",
+    "css",
+    "json",
+    "markdown",
+    "bash",
+    "shell",
+    "python",
+    "rust",
+    "go",
+    "sql",
+    "yaml",
+    "svelte",
+    "swift",
+    "kotlin",
+    "java",
+    "c",
+    "cpp",
+  ],
+});
+
+/**
+ * Escape curly braces for Svelte compatibility
+ */
+function escapeSvelte(str) {
+  return str
+    .replace(/\{/g, "&#123;")
+    .replace(/\}/g, "&#125;");
+}
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  // Consult https://svelte.dev/docs/kit/integrations
-  // for more information about preprocessors
   preprocess: [
     vitePreprocess(),
     mdsvex({
       extensions: [".md"],
+      highlight: {
+        highlighter: (code, lang) => {
+          const html = highlighter.codeToHtml(code, {
+            lang: lang || "text",
+            theme: "github-dark-default",
+          });
+          // Escape curly braces and wrap with language label
+          const escaped = escapeSvelte(html);
+          return `<div class="code-block" data-lang="${lang || "code"}">${escaped}</div>`;
+        },
+      },
     }),
   ],
 
   extensions: [".svelte", ".md"],
 
   kit: {
-    // adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
-    // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
-    // See https://svelte.dev/docs/kit/adapters for more information about adapters.
     adapter: adapter(),
   },
   vitePlugin: {
