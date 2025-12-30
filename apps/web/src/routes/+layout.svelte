@@ -18,9 +18,9 @@
 
     <!-- Light Sky Blue Glow (Light Mode) -->
     <div class="bg-absolute crystal" style:opacity={$isDark ? 0 : 1}></div>
-  </div>
 
-  <Grain />
+    <Grain />
+  </div>
 
   <FloatingDock />
 
@@ -47,7 +47,6 @@
     min-height: 100vh;
   }
 
-  /* Backgrounds */
   .background-layer {
     position: fixed;
     inset: 0;

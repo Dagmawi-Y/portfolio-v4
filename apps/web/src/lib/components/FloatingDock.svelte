@@ -15,7 +15,7 @@
     ArrowLeft,
   } from "lucide-svelte";
   import { isDark } from "$lib/stores/theme";
-  import { activeSection } from "$lib/stores/ui";
+  import { activeSection, triggerHomeReset } from "$lib/stores/ui";
   import { triggerChat } from "$lib/stores/chat";
   import { playSwitch, playPop } from "$lib/utils/sound";
   import { goto } from "$app/navigation";
@@ -108,6 +108,13 @@
     }, 1000);
 
     playPop();
+
+    if (id === "home") {
+      // If already at top of home, reset the phone view
+      if ($page.url.pathname === "/" && y < 100) {
+        triggerHomeReset();
+      }
+    }
 
     if (id === "contact") {
       e.preventDefault();

@@ -2,6 +2,7 @@
   import { ArrowRight, Smartphone, Layers, Zap } from "lucide-svelte";
   import { Motion } from "svelte-motion";
   import SocialLinks from "./SocialLinks.svelte";
+  import { heroView } from "$lib/stores/ui";
 
   export let focusChat: () => void;
   export let itemVariants: any;
@@ -26,9 +27,10 @@
 
     <Motion variants={itemVariants} let:motion>
       <p class="intro" use:motion>
-        I'm <strong class="name-highlight">Dagmawi</strong>. I transform complex
-        engineering problems into fluid, high-performance mobile experiences. I
-        write code that lasts and designs that matter.
+        I'm <strong class="name-highlight">Dagmawi</strong>. I build mobile apps
+        that people actually enjoy using. I'm obsessed with the details that
+        usually get ignored - the 120fps animations, rock-solid architecture,
+        and making sure software feels as good as it looks.
       </p>
     </Motion>
 
@@ -54,7 +56,11 @@
         <a href="#work" class="btn btn-primary">
           View Work <ArrowRight size={18} />
         </a>
-        <button on:click={focusChat} class="btn btn-secondary">
+        <button
+          on:click={focusChat}
+          class="btn btn-secondary"
+          class:active={$heroView === "chat"}
+        >
           Send me a Message
         </button>
       </div>
@@ -104,10 +110,10 @@
   }
 
   .intro {
-    font-size: 1.125rem;
-    line-height: 1.6;
+    font-size: 1.25rem;
+    line-height: 1.5;
     color: var(--text-secondary);
-    max-width: 500px;
+    max-width: 540px;
     margin-bottom: 2rem;
   }
 
@@ -187,10 +193,20 @@
     background: var(--accent-1);
     color: white;
     border-color: var(--accent-1);
-    clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
-    transform: rotate(10deg) translateX(10px) translateY(5px);
-    padding-right: 2.5rem;
     box-shadow: 0 15px 40px rgba(var(--accent-1-rgb), 0.4);
+  }
+
+  .btn-secondary.active {
+    /* No persistent colors - only morph on hover */
+  }
+
+  .btn-secondary.active:hover {
+    background: var(--accent-1);
+    color: white;
+    border-color: var(--accent-1);
+    clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
+    padding-right: 2.5rem;
+    transform: rotate(10deg) translateX(10px) translateY(5px);
   }
 
   @keyframes pulse {

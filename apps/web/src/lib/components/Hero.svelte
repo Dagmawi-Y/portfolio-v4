@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { chatTrigger } from "$lib/stores/chat";
   import { stickyObserver } from "$lib/actions/sticky";
-  import { activeSection } from "$lib/stores/ui";
+  import { activeSection, heroView, homeResetTrigger } from "$lib/stores/ui";
 
   // Hero Components
   import HeroContent from "./hero/HeroContent.svelte";
@@ -16,8 +16,17 @@
   import AppChatInput from "./phone/AppChatInput.svelte";
   import ChatDrawer from "./phone/ChatDrawer.svelte";
 
-  // View state
+  // View state sync
   let currentView: "profile" | "chat" = "profile";
+  $: heroView.set(currentView);
+
+  // Handle Global Home Reset
+  $: if ($homeResetTrigger > 0) {
+    currentView = "profile";
+    isDrawerOpen = false;
+    homeResetTrigger.set(0);
+  }
+
   let isGlowing = false;
   let isDrawerOpen = false;
 
@@ -41,6 +50,7 @@
   let chatInput: HTMLTextAreaElement;
   let message = "";
   $: if ($chatTrigger > 0) {
+    currentView = "chat"; // Ensure we switch to chat view
     focusChat();
     chatTrigger.set(0);
   }

@@ -2,13 +2,10 @@
 
 <style>
   .grain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    inset: 0;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 1;
     /* 
       User-provided Grain Image.
       Served from static folder: /grain-bg.jpg

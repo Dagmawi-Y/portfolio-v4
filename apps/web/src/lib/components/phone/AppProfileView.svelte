@@ -7,7 +7,7 @@
 
 <div class="profile-view telegram" in:fade={{ duration: 300 }}>
   <div class="profile-masthead">
-    <img src="/me.png" alt="Dagmawi" class="masthead-img" />
+    <img src="/me3.png" alt="Dagmawi" class="masthead-img" />
     <div class="masthead-overlay">
       <div class="masthead-wrapper">
         <div class="masthead-info">
@@ -69,6 +69,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: grayscale(0%);
+    transition: filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .profile-masthead:hover .masthead-img {
+    filter: grayscale(100%);
   }
   .masthead-overlay {
     position: absolute;
