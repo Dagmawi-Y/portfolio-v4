@@ -53,4 +53,11 @@
     border-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
   }
+
+  @media (max-width: 960px) {
+    .socials {
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+  }
 </style>

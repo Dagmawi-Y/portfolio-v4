@@ -52,12 +52,11 @@
             <h3 class="footer-logo">{siteConfig.name}</h3>
             <div class="status-pill">
               <span class="status-dot"></span>
-              Available for Work
+              Available
             </div>
           </div>
           <p class="mission">
-            Building local-first, AI-powered experiences that scale. Based in
-            Addis Ababa, Ethiopia.
+            Building performant, product-led mobile & web experiences.
           </p>
           <div class="location-tag">
             <MapPin size={14} />
@@ -98,8 +97,13 @@
         <!-- Newsletter / Contact -->
         <div class="footer-column contact-column">
           <h4 class="column-title">Say Hello</h4>
-          <a href="mailto:{siteConfig.email}" class="email-link">
-            {siteConfig.email}
+          <a
+            href="/"
+            class="email-link"
+            on:click={handleContactClick}
+            aria-label="Open Chat"
+          >
+            Start a Conversation
           </a>
           <p class="response-time">Typical response time: &lt; 24h</p>
         </div>

@@ -19,7 +19,7 @@
         </div>
         <button class="masthead-cta" on:click={onMessageClick}>
           <Send size={14} />
-          <span>Send Message</span>
+          <span>Message</span>
         </button>
       </div>
     </div>
@@ -52,6 +52,23 @@
       </div>
     </div>
   </div>
+
+  <div class="music-section">
+    <div class="media-header">Music</div>
+    <div class="spotify-embed">
+      <iframe
+        title="Coding Playlist"
+        style="border-radius:12px"
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DWT4nLmUaFDGb?utm_source=generator&theme=0"
+        width="100%"
+        height="352"
+        frameBorder="0"
+        allowfullscreen
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -62,13 +79,14 @@
     position: relative;
     width: calc(100% + 32px);
     margin: 0 -16px 0;
-    height: 320px;
+    height: 220px;
     background: var(--phone-surface);
   }
   .masthead-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
     filter: grayscale(0%);
     transition: filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -80,7 +98,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 30px 24px 18px;
+    padding: 30px 24px 8px;
     color: #fff;
     z-index: 1;
   }
@@ -190,6 +208,16 @@
     cursor: pointer;
   }
 
+  .music-section {
+    padding: 0 16px 12px;
+  }
+  .spotify-embed {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--phone-surface);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle lift */
+  }
+
   .media-section {
     padding: 0 16px 40px;
   }
@@ -214,5 +242,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+  .media-item:hover img {
+    filter: grayscale(0%);
   }
 </style>

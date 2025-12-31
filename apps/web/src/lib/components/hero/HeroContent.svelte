@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ArrowRight, Smartphone, Layers, Zap } from "lucide-svelte";
+  import { ArrowDown, Smartphone, Layers, Zap } from "lucide-svelte";
   import { Motion } from "svelte-motion";
   import SocialLinks from "./SocialLinks.svelte";
   import { heroView } from "$lib/stores/ui";
@@ -11,6 +11,14 @@
 
 <Motion initial="hidden" animate="show" variants={containerVariants} let:motion>
   <div class="content" use:motion>
+    <Motion variants={itemVariants} let:motion>
+      <div class="mobile-profile-hero" use:motion>
+        <div class="profile-frame">
+          <img src="/me3.png" alt="Dagmawi" />
+        </div>
+      </div>
+    </Motion>
+
     <Motion variants={itemVariants} let:motion>
       <div class="badge" use:motion>
         <span class="pulse"></span>
@@ -38,7 +46,7 @@
       <div class="specs" use:motion>
         <div class="spec-item">
           <Smartphone size={18} class="accent-icon" />
-          <span>React Native / Swift</span>
+          <span>React Native</span>
         </div>
         <div class="spec-item">
           <Layers size={18} class="accent-icon" />
@@ -54,15 +62,17 @@
     <Motion variants={itemVariants} let:motion>
       <div class="actions" use:motion>
         <a href="#work" class="btn btn-primary">
-          View Work <ArrowRight size={18} />
+          View Work <ArrowDown size={18} />
         </a>
-        <button
-          on:click={focusChat}
-          class="btn btn-secondary"
-          class:active={$heroView === "chat"}
-        >
-          Send me a Message
-        </button>
+        <div class="btn-wrapper">
+          <button
+            on:click={focusChat}
+            class="btn btn-secondary"
+            class:active={$heroView === "chat"}
+          >
+            Send me a Message
+          </button>
+        </div>
       </div>
     </Motion>
 
@@ -71,6 +81,7 @@
 </Motion>
 
 <style>
+  /* ... existing styles ... */
   .badge {
     display: inline-flex;
     align-items: center;
@@ -83,15 +94,55 @@
     font-weight: 500;
     color: var(--text-secondary);
     margin-bottom: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .badge:hover {
+    background: var(--surface-1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   .pulse {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background: #4ade80;
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
     animation: pulse 2s infinite;
+  }
+
+  /* Mobile Profile Hero - Hidden by default */
+  .mobile-profile-hero {
+    display: none;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-frame {
+    width: 80px;
+    height: 80px;
+    border-radius: 24px; /* Squircle */
+    padding: 3px;
+    background: linear-gradient(135deg, var(--surface-2), var(--surface-1));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+  }
+
+  .profile-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px; /* Inner squircle */
+    filter: grayscale(0%);
+    transition: filter 0.3s ease;
+  }
+
+  /* Reveal on Mobile */
+  @media (max-width: 960px) {
+    .mobile-profile-hero {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   .headline {
@@ -172,6 +223,13 @@
     box-shadow: 0 10px 20px -10px rgba(var(--text-primary), 0.3);
   }
 
+  /* The Wrapper Fix */
+  .btn-wrapper {
+    display: inline-block;
+    position: relative;
+    /* Ensure the wrapper respects flex layout of parent */
+  }
+
   .btn-secondary {
     background: var(--surface-1);
     color: var(--text-primary);
@@ -189,7 +247,8 @@
     z-index: -1;
   }
 
-  .btn-secondary:hover {
+  /* Trigger hover from the wrapper, affecting the child */
+  .btn-wrapper:hover .btn-secondary {
     background: var(--accent-1);
     color: white;
     border-color: var(--accent-1);
@@ -200,7 +259,8 @@
     /* No persistent colors - only morph on hover */
   }
 
-  .btn-secondary.active:hover {
+  /* Trigger active morph from wrapper hover */
+  .btn-wrapper:hover .btn-secondary.active {
     background: var(--accent-1);
     color: white;
     border-color: var(--accent-1);
@@ -218,6 +278,28 @@
     }
     100% {
       box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+    }
+  }
+
+  /* Mobile adjustment: Ensure badge centered on small screens */
+  @media (max-width: 960px) {
+    .badge {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .intro {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .specs {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .actions {
+      justify-content: center;
     }
   }
 </style>

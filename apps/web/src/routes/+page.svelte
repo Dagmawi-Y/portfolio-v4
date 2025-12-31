@@ -283,5 +283,10 @@
     .projects-list {
       padding-left: 1.25rem;
     }
+
+    .type-label::before,
+    .type-label::after {
+      left: -1.5rem;
+    }
   }
 </style>

@@ -76,6 +76,17 @@
     background: #2a2a2a;
     border-radius: 4px;
     box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  /* Titanum-like finish for Dark Mode visibility */
+  :global(.dark) .button {
+    background: #505050;
+    box-shadow:
+      inset 0 0 2px rgba(255, 255, 255, 0.2),
+      0 0 0 0.5px rgba(255, 255, 255, 0.1);
   }
   .silent {
     width: 3px;

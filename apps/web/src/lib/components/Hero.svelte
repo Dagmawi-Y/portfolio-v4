@@ -260,8 +260,9 @@
     width: 100%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr max-content;
     gap: 4rem;
+    justify-content: center;
     align-items: center;
     position: relative;
     z-index: 10;

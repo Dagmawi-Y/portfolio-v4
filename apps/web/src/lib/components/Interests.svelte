@@ -91,44 +91,44 @@
     },
   ];
 
-  const watching = [
-    {
-      title: "Severance",
-      type: "series",
-      image:
-        "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=300&fit=crop",
-      take: "Mind-bending masterpiece",
-      featured: true,
-    },
-    {
-      title: "The Bear",
-      type: "series",
-      image:
-        "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop",
-      take: "Beautiful chaos",
-    },
-    {
-      title: "Arrival",
-      type: "film",
-      image:
-        "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&h=300&fit=crop",
-      take: "Sci-fi that makes you think",
-    },
-    {
-      title: "Ex Machina",
-      type: "film",
-      image:
-        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=300&fit=crop",
-      take: "Unsettling perfection",
-    },
-    {
-      title: "Shogun",
-      type: "series",
-      image:
-        "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&h=300&fit=crop",
-      take: "Epic storytelling",
-    },
-  ];
+  // const watching = [
+  //   {
+  //     title: "Severance",
+  //     type: "series",
+  //     image:
+  //       "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=300&fit=crop",
+  //     take: "Mind-bending masterpiece",
+  //     featured: true,
+  //   },
+  //   {
+  //     title: "The Bear",
+  //     type: "series",
+  //     image:
+  //       "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop",
+  //     take: "Beautiful chaos",
+  //   },
+  //   {
+  //     title: "Arrival",
+  //     type: "film",
+  //     image:
+  //       "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=400&h=300&fit=crop",
+  //     take: "Sci-fi that makes you think",
+  //   },
+  //   {
+  //     title: "Ex Machina",
+  //     type: "film",
+  //     image:
+  //       "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=300&fit=crop",
+  //     take: "Unsettling perfection",
+  //   },
+  //   {
+  //     title: "Shogun",
+  //     type: "series",
+  //     image:
+  //       "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=400&h=300&fit=crop",
+  //     take: "Epic storytelling",
+  //   },
+  // ];
 </script>
 
 <div class="interests-wrapper" style="position: relative;">
@@ -201,7 +201,7 @@
   </section>
 
   <!-- WATCHING SECTION -->
-  <section class="interest-section">
+  <!-- <section class="interest-section">
     <StickyHeader title="Watching" compact />
     <div class="bento watch-bento">
       {#each watching as item}
@@ -225,7 +225,7 @@
         </div>
       {/each}
     </div>
-  </section>
+  </section> -->
 </div>
 
 <style>

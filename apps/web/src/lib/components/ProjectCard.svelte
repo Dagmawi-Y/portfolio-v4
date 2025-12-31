@@ -251,17 +251,28 @@
 
   @media (max-width: 640px) {
     .project-header {
-      grid-template-columns: 1fr;
+      grid-template-columns: 80px 1fr;
       gap: 1rem;
+      align-items: center; /* Better alignment for small rows */
     }
 
     .image-preview {
-      aspect-ratio: 21 / 9;
+      aspect-ratio: 1; /* Square for mobile list view */
       width: 100%;
+      height: 80px;
     }
 
     .title {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
+    }
+
+    .description {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      font-size: 0.85rem;
     }
   }
 </style>

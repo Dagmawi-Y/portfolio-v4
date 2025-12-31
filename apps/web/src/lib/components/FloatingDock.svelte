@@ -7,7 +7,7 @@
   import {
     Home,
     FolderKanban,
-    Sparkles,
+    Telescope,
     NotebookPen,
     Mail,
     Sun,
@@ -23,7 +23,7 @@
   const navItems = [
     { id: "home", icon: Home, label: "Home", href: "/" },
     { id: "work", icon: FolderKanban, label: "Work", href: "/#work" },
-    { id: "lab", icon: Sparkles, label: "Lab", href: "/#lab" },
+    { id: "lab", icon: Telescope, label: "Interests", href: "/#lab" },
     { id: "notes", icon: NotebookPen, label: "Notes", href: "/blog" },
     {
       id: "contact",
@@ -250,6 +250,13 @@
     opacity: 1;
     transform: scale(1);
     pointer-events: auto;
+    animation: allowOverflow 0s forwards 0.6s; /* Wait for width transition to finish */
+  }
+
+  @keyframes allowOverflow {
+    to {
+      overflow: visible;
+    }
   }
 
   .divider {
