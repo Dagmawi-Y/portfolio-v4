@@ -1,7 +1,8 @@
 <script>
   import "../app.css";
   import FloatingDock from "$lib/components/FloatingDock.svelte";
-  import Grain from "$lib/components/Grain.svelte";
+  import Footer from "$lib/components/Footer.svelte";
+
   import { dev } from "$app/environment";
   import { isDark } from "$lib/stores/theme";
 
@@ -18,8 +19,6 @@
 
     <!-- Light Sky Blue Glow (Light Mode) -->
     <div class="bg-absolute crystal" style:opacity={$isDark ? 0 : 1}></div>
-
-    <Grain />
   </div>
 
   <FloatingDock />
@@ -27,6 +26,8 @@
   <main class="content-area">
     <slot />
   </main>
+
+  <Footer />
 </div>
 
 <style>

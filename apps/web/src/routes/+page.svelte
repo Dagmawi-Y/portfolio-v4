@@ -149,7 +149,7 @@
   .projects-container {
     display: flex;
     flex-direction: column;
-    gap: 6rem;
+    gap: 3rem; /* Reduced from 6rem */
     position: relative;
     padding-left: 2rem;
   }

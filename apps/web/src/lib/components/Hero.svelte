@@ -72,7 +72,7 @@
     }
 
     currentView = "chat";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    smoothScrollToTop();
 
     setTimeout(() => {
       if (chatInput) {
@@ -88,7 +88,39 @@
           });
         }
       }
-    }, 500);
+    }, 1000); // Increased delay slightly to match scroll
+  }
+
+  function smoothScrollToTop() {
+    const startPosition = window.scrollY;
+    const duration = 1200; // ms
+    let startTime: number | null = null;
+
+    // Disable native smooth scroll to avoid conflict / distinct steps
+    document.documentElement.style.scrollBehavior = "auto";
+
+    function animation(currentTime: number) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      // easeInOutQuart
+      const ease =
+        progress < 0.5
+          ? 8 * progress * progress * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 4) / 2;
+
+      window.scrollTo(0, startPosition * (1 - ease));
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      } else {
+        // Restore native smooth scroll
+        document.documentElement.style.scrollBehavior = "";
+      }
+    }
+
+    requestAnimationFrame(animation);
   }
 
   function sendMessage() {
