@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { Motion } from "svelte-motion";
   import TableOfContents from "$lib/components/TableOfContents.svelte";
-  import { ChevronLeft, Share2, Mail, Twitter } from "lucide-svelte";
+  import { Share2, Mail, Twitter } from "lucide-svelte";
 
   export let data;
 

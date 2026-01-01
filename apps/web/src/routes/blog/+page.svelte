@@ -25,7 +25,7 @@
     >
       <div class="header-content" use:motion>
         <h1 class="title">Brain Dump</h1>
-        <p class="subtitle">Occasional notes on code, design, and life.</p>
+        <p class="subtitle">Occasional notes on code and life.</p>
       </div>
     </Motion>
   </header>
