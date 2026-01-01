@@ -14,7 +14,7 @@
     <Motion variants={itemVariants} let:motion>
       <div class="mobile-profile-hero" use:motion>
         <div class="profile-frame">
-          <img src="/me3.png" alt="Dagmawi" />
+          <img src="/me.png" alt="Dagmawi" />
         </div>
       </div>
     </Motion>

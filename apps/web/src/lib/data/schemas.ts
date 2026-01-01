@@ -27,7 +27,7 @@ export const ExperienceSchema = z.object({
   role: z.string(),
   company: z.string(),
   period: z.string(),
-  description: z.string(),
+  description: z.array(z.string()).or(z.string()),
   logo: z.string().url(),
   link: z.string().url(),
 });
@@ -38,7 +38,7 @@ export const EducationSchema = z.object({
   year: z.string(),
   logo: z.string().url(),
   link: z.string().url(),
-  description: z.string(),
+  description: z.array(z.string()).or(z.string()),
 });
 
 export const CertificateSchema = z.object({

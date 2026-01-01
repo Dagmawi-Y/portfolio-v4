@@ -21,7 +21,11 @@
 
   $: projectTypes = [...new Set(filteredProjects.map((p) => p.type))].sort(
     (a: string, b: string) => {
-      const order: Record<string, number> = { Work: 1, Personal: 2, Course: 3 };
+      const order: Record<string, number> = {
+        Work: 1,
+        Community: 2,
+        "Side Projects": 3,
+      };
       return (order[a] || 99) - (order[b] || 99);
     }
   );
@@ -44,7 +48,7 @@
       />
 
       <!-- Simple pill filters -->
-      <!-- <div class="filters">
+      <div class="filters">
         {#each categories as cat}
           <button
             class="filter-pill"
@@ -54,7 +58,7 @@
             {cat}
           </button>
         {/each}
-      </div> -->
+      </div>
 
       <div class="projects-container">
         {#each projectTypes as type}

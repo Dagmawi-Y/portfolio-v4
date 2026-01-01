@@ -1,8 +1,50 @@
-<script>
+<script lang="ts">
   import { siteConfig } from "$lib/config";
   import { Briefcase, GraduationCap, Award } from "lucide-svelte";
   import CareerItem from "./CareerItem.svelte";
   import StickyHeader from "./StickyHeader.svelte";
+
+  interface Role {
+    role: string;
+    period: string;
+    description: string | string[];
+  }
+
+  interface ExperienceGroup {
+    company: string;
+    logo: string;
+    link?: string;
+    roles: Role[];
+  }
+
+  // Group experiences by company
+  const groupedExperience = siteConfig.experience.reduce<ExperienceGroup[]>(
+    (acc, current) => {
+      const existingGroup = acc.find((g) => g.company === current.company);
+      if (existingGroup) {
+        existingGroup.roles.push({
+          role: current.role,
+          period: current.period,
+          description: current.description,
+        });
+      } else {
+        acc.push({
+          company: current.company,
+          logo: current.logo,
+          link: current.link,
+          roles: [
+            {
+              role: current.role,
+              period: current.period,
+              description: current.description,
+            },
+          ],
+        });
+      }
+      return acc;
+    },
+    []
+  );
 </script>
 
 <div class="career-wrapper" style="position: relative;">
@@ -18,16 +60,29 @@
 
       <div class="section-content">
         <div class="item-list">
-          {#each siteConfig.experience as job, i}
-            <CareerItem
-              title={job.role}
-              subtitle={job.company}
-              period={job.period}
-              description={job.description}
-              logo={job.logo}
-              link={job.link}
-              showDivider={i < siteConfig.experience.length - 1}
-            />
+          {#each groupedExperience as group, i}
+            {#if group.roles.length === 1}
+              {@const job = group.roles[0]}
+              <CareerItem
+                title={job.role}
+                subtitle={group.company}
+                period={job.period}
+                description={job.description}
+                logo={group.logo}
+                link={group.link}
+                showDivider={i < groupedExperience.length - 1}
+              />
+            {:else}
+              <CareerItem
+                title={group.company}
+                subtitle="Company"
+                logo={group.logo}
+                link={group.link}
+                isGroup={true}
+                roles={group.roles}
+                showDivider={i < groupedExperience.length - 1}
+              />
+            {/if}
           {/each}
         </div>
       </div>

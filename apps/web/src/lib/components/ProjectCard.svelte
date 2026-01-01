@@ -27,9 +27,9 @@
 
         <div class="content-group">
           <div class="meta-label">
-            <span class="category">{project.category}</span>
-            <span class="dot">·</span>
-            <span class="type">{project.type}</span>
+            <!-- <span class="category">{project.category}</span>
+            <span class="dot">·</span> -->
+            <!-- <span class="type">{project.type}</span> -->
           </div>
 
           <h3 class="title">{project.title}</h3>

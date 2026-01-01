@@ -9,33 +9,45 @@ export const education: Education[] = [
     degree: "Software Engineering",
     school: "Holberton School",
     year: "2023 - 2025",
-    logo: "https://api.dicebear.com/7.x/shapes/svg?seed=Holberton&backgroundColor=e63946",
+    logo: "/holbterton-logo.png",
     link: "https://www.holbertonschool.com/",
-    description: "Intensive project-based software engineering program focusing on full-stack development.",
+    description: [
+      "Intensive project-based software engineering program.",
+      "Focused on full-stack development, Low-level programming, and System engineering."
+    ],
   },
   {
     degree: "BSc in Computer Software Engineering",
     school: "Debre Birhan University",
     year: "2019 - 2024",
-    logo: "https://api.dicebear.com/7.x/shapes/svg?seed=DBU&backgroundColor=457b9d",
+    logo: "/dbu-logo.png",
     link: "#",
-    description: "Major in Software Engineering with focus on system architecture and distributed systems.",
+    description: [
+      "Major in Software Engineering with focus on system architecture.",
+      "Studied distributed systems and software quality assurance."
+    ],
   },
   {
     degree: "Certified Data Scientist",
     school: "ExploreAI Academy",
     year: "2023 - 2024",
-    logo: "https://api.dicebear.com/7.x/shapes/svg?seed=ExploreAI&backgroundColor=1d3557",
+    logo: "/exploreai-logo.png",
     link: "#",
-    description: "Specialization in machine learning, data engineering, and statistical analysis.",
+    description: [
+      "Specialization in machine learning and data engineering.",
+      "Hands-on experience with statistical analysis and data visualization."
+    ],
   },
   {
     degree: "BA in Business Administration",
     school: "Debre Birhan University",
     year: "2019 - 2024",
-    logo: "https://api.dicebear.com/7.x/shapes/svg?seed=DBUBus&backgroundColor=a8dadc",
+    logo: "/dbu-logo.png",
     link: "#",
-    description: "Concurrent degree focusing on organizational leadership and startup management.",
+    description: [
+      "Concurrent degree focusing on organizational leadership.",
+      "Studied startup management and business strategy."
+    ],
   }
 ];
 

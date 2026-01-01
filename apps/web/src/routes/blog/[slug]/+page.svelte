@@ -54,7 +54,7 @@
         <div class="sidebar-sticky" use:motion>
           <div class="post-info">
             <div class="author-pill">
-              <img src="/me3.png" alt="Dagmawi" />
+              <img src="/me.png" alt="Dagmawi" />
               <span>Dagmawi</span>
             </div>
           </div>

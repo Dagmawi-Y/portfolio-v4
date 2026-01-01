@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Github, Linkedin, Twitter } from "lucide-svelte";
+  import { Github, Linkedin, Twitter, BookOpen } from "lucide-svelte";
   import { siteConfig } from "$lib/config";
   import { Motion } from "svelte-motion";
 
@@ -32,6 +32,7 @@
   .socials {
     display: flex;
     gap: 1rem;
+    align-items: center;
   }
 
   .social-link {
@@ -45,6 +46,20 @@
     background: var(--surface-1);
     border: 1px solid transparent;
     transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .blog-pill {
+    width: auto;
+    padding: 0 1rem;
+    gap: 0.5rem;
+    background: var(--surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .blog-text {
+    font-size: 0.9rem;
+    font-weight: 600;
   }
 
   .social-link:hover {
@@ -52,6 +67,12 @@
     background: var(--surface-2);
     border-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
+  }
+
+  .blog-pill:hover {
+    background: var(--accent-1);
+    color: white;
+    box-shadow: 0 10px 20px -5px rgba(var(--accent-1-rgb), 0.3);
   }
 
   @media (max-width: 960px) {
